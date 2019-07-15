@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding:0;
+}
+ul,li,ol{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.container{
+    widows: 100%;
+}
+.inner{
+    width: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+div#header{
+    width:100%;
+    background-color: #004c7e;
+}
+header{
+    width: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+div.header{
+    height: inherit;
+    display: flex;
+    align-items: center;
+}
+header li{
+    padding:0 10px;
+}
+header div.left li a{
+    color:#c6d3e0;
+}
+header div.right li a{
+    color:#ebb428;
+}
+
+/* logo开始 */
+div#logo{
+    width: 100%;
+    height: 130px;
+    background-color: #005691;
+}
+div#logo div.inner{
+    width: auto;
+    height: inherit;
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: url('../images/head_bg.png') right 25px no-repeat;
+}
+/* logo结束 */
+/* nav开始 */
+div#nav{
+    background-color: #0e6bc2;
+}
+ul.nav.inner{
+    height: 55px;
+    display: flex;
+    justify-content: space-around;
+}
+ul.nav.inner li,ul.nav.inner ul.down-menue li{
+    height: 55px;
+    width: 150px;
+    text-align: center;
+    line-height: 55px;
+    cursor: pointer;
+    background-color: #0e6bc2;
+}
+ul.nav.inner ul.down-menue li{
+    height: 30px;
+    line-height: 30px;
+}
+ul.nav.inner li a{
+    color: white;
+}
+ul.nav.inner li:hover,ul.nav.inner ul.down-menue li:hover{
+    background-color: #005691;
+}
+ul.down-menue{
+    /* height: 0px; */
+    width: inherit;
+    overflow: hidden;
+    display: none;
+}
+/* nav结束 */
+/* banner开始 */
+
+/* banner结束 */
+/* 媒体查询开始 */
+@media screen and (max-width:800px){
+    div#header{/*宽度小于900px不显示header*/
+        display: none;
+    }
+    div#logo div.inner{
+        /* logo居中 */
+        justify-content: center;
+    }
+    div#logo div.inner{
+        /* 取消背景校训的显示 */
+        background: none;
+    }
+    div#nav{
+        /* 取消nav的显示 */
+        display: none;
+    }
+}
+/* 媒体查询结束 */
