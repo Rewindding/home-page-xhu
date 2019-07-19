@@ -7,6 +7,7 @@ ul,li,ol{
 }
 a{
     text-decoration: none;
+    color: black;
 }
 .container{
     widows: 100%;
@@ -92,9 +93,54 @@ ul.down-menue{
     width: inherit;
     overflow: hidden;
     display: none;
+    position: relative;
+    z-index: 20;
 }
 /* nav结束 */
 /* banner开始 */
+div.banner.inner{
+    max-width: 1200px;
+    height: 400px;
+    width: auto;
+    position: relative;
+    overflow: hidden;
+}
+div.banner div{
+    max-width: 1200px;
+    height: 400px;
+    width: auto;
+    position: absolute;
+    z-index: 8;
+}
+div.banner img{
+    max-width: 1200px;
+    width: auto;
+}
+div.banner div#front_banner{
+    z-index: 10;
+}
+div#next_banner{
+    z-index: 10;
+}
+div.banner a.banner-button{
+    width: 40px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    opacity: 0.5;
+    background-color: black;
+    color: white;
+    position: absolute;
+    font-size: 50px;
+    z-index: 30;
+    top: 40%;
+}
+div.banner a.banner-button.right{
+    right: 0;
+}
+div.banner a.banner-button.left{
+    left:0;
+}
 
 /* banner结束 */
 /* 媒体查询开始 */
