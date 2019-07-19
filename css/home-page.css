@@ -144,7 +144,7 @@ div.banner a.banner-button.left{
 
 /* banner结束 */
 /* 媒体查询开始 */
-@media screen and (max-width:800px){
+@media screen and (max-width:920px){
     div#header{/*宽度小于900px不显示header*/
         display: none;
     }
@@ -159,6 +159,9 @@ div.banner a.banner-button.left{
     div#nav{
         /* 取消nav的显示 */
         display: none;
+    }
+    div#banner{
+
     }
 }
 /* 媒体查询结束 */

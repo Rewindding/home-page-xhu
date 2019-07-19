@@ -64,7 +64,7 @@ function clickMove(obj,direction){
             return true;
         }
         else {
-            right_P-=0.5; now_P-=0.5;
+            right_P-=1; now_P-=1;
             right.style.left=right_P+"%";
             now.style.left=now_P+"%";
         }
@@ -88,11 +88,12 @@ function clickMove(obj,direction){
             now.setAttribute('id','');
             obj.right=obj.now;
             obj.now=obj.left;
-            obj.left=(obj.left-1)%banner_divs.length;
+            obj.left=(obj.left-1)>=0? (obj.left-1)%banner_divs.length:banner_divs.length-1;
+            //负数求余得到负数？？
             return true;
         }
         else {
-            left_P+=0.5; now_P+=0.5;
+            left_P+=1; now_P+=1;
             left.style.left=left_P+"%";
             now.style.left=now_P+"%";
         }
@@ -106,13 +107,15 @@ function banner(){
         banner_divs[i].style.left="0";
     var BannerM=new Object();BannerM.old=0;BannerM.new=1;BannerM.last=3;BannerM.movement=false;
     var banner_obj=new Object();
-    banner_obj.now=0;banner_obj.left=3;banner_obj.right=1;banner_obj.movement=false; banner_obj.clickmove=false;
+    banner_obj.now=0;banner_obj.left=3;banner_obj.right=1;banner_obj.movement=false; 
 
     var infi=setInterval(function(){
         clickMove(banner_obj,'right');
     },3000);
     var buttons=document.getElementsByClassName('banner-button');
     buttons[0].onclick=function(){
+        if(banner_obj.movement) return false;
+   
         clearInterval(infi);
         clickMove(banner_obj,'right');
         infi=setInterval(function(){
@@ -120,11 +123,9 @@ function banner(){
         },3000);
     }
     buttons[1].onclick=function(){
-        if(banner_obj.clickMove||banner_obj.movement) return false;
-        banner_obj.clickMove=true;
+        if(banner_obj.movement) return false;
         clearInterval(infi);
         clickMove(banner_obj,'left');
-        banner_obj.clickMove=false;
         infi=setInterval(function(){
             clickMove(banner_obj,'right');
         },3000);
