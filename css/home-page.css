@@ -119,7 +119,7 @@ div.banner img{
 div.banner div#front_banner{
     z-index: 10;
 }
-div#next_banner{
+div#last_banner{
     z-index: 10;
 }
 div.banner a.banner-button{
@@ -160,8 +160,8 @@ div.banner a.banner-button.left{
         /* 取消nav的显示 */
         display: none;
     }
-    div#banner{
-
+    div#banner img{
+        width: 100vw;
     }
 }
 /* 媒体查询结束 */

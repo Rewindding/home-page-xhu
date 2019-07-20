@@ -48,15 +48,14 @@ function clickMove(obj,direction){
         if(!obj.movement){//初始化位置
         right.style.left="100%";
         now.style.left="0";
-        now.setAttribute('id','front_banner');
-        right.setAttribute('id','next_banner');
+        now.setAttribute('id','last_banner');
+        right.setAttribute('id','front_banner');
         obj.movement=true;
         }
         var right_P=parseFloat(right.style.left);
         var now_P=parseFloat(now.style.left);
         if(right_P==0&&now_P==-100) {//移动结束
             obj.movement=false;
-            right.setAttribute('id','front_banner');
             now.setAttribute('id','');
             obj.left=obj.now;
             obj.now=obj.right;
@@ -70,21 +69,20 @@ function clickMove(obj,direction){
         }
         setTimeout(function(){
             clickMove(obj,direction);
-        },2);
+        },1);
     }
     else if(direction=='left'){
         if(!obj.movement){//初始化位置
             left.style.left="-100%";
             now.style.left="0";
-            now.setAttribute('id','front_banner');
-            left.setAttribute('id','next_banner');
+            now.setAttribute('id','last_banner');
+            left.setAttribute('id','front_banner');
             obj.movement=true;
         }
         var left_P=parseFloat(left.style.left);
         var now_P=parseFloat(now.style.left);
         if(left_P==0&&now_P==100) {//移动结束
             obj.movement=false;
-            left.setAttribute('id','front_banner');
             now.setAttribute('id','');
             obj.right=obj.now;
             obj.now=obj.left;
@@ -99,7 +97,7 @@ function clickMove(obj,direction){
         }
         setTimeout(function(){
             clickMove(obj,direction);
-        },2);
+        },1);
     }
 }
 function banner(){
