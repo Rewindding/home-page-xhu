@@ -1,5 +1,7 @@
 var li_height=30;
 var banner_divs=document.getElementsByClassName('b_img');
+var discription=document.getElementById('b_discription');
+
 function down_animo(ElemId,height,interval){
     var targetElement=document.getElementById(ElemId);
     if(parseInt(targetElement.style.height)==height) 
@@ -22,11 +24,11 @@ function PredownMenue(){
         uls[i].style.height="0px";
         uls[i].style.display="none";
         var li_count=uls[i].getElementsByTagName('li').length;
-        var height=li_count*li_height;
+        uls[i].parentElement.height=li_count*li_height;
         var this_id=uls[i].getAttribute('id');
         uls[i].parentElement.childId=this_id;
         uls[i].parentElement.onmouseover=function(){
-            down_animo(this.childId,height,1);
+            down_animo(this.childId,this.height,1);
             //down_animo(this_id,height,1);
             //this_id永远等于最后一次循环取得的id
             //在循环中绑定事件时，this_id没有立刻绑定，循环结束后，所有元素都会被绑定上最后一个id
@@ -43,7 +45,7 @@ function clickMove(obj,direction){
     var now=banner_divs[obj.now];
     var left=banner_divs[obj.left];
     var right=banner_divs[obj.right];
-    //考虑图片还未移动到位按钮点击的情况
+
     if(direction=='right'){
         if(!obj.movement){//初始化位置
         right.style.left="100%";
@@ -51,12 +53,13 @@ function clickMove(obj,direction){
         now.setAttribute('id','last_banner');
         right.setAttribute('id','front_banner');
         obj.movement=true;
+        discription.innerHTML=right.firstElementChild.getAttribute('alt');
         }
         var right_P=parseFloat(right.style.left);
         var now_P=parseFloat(now.style.left);
         if(right_P==0&&now_P==-100) {//移动结束
             obj.movement=false;
-            now.setAttribute('id','');
+            now.removeAttribute('id');
             obj.left=obj.now;
             obj.now=obj.right;
             obj.right=(obj.right+1)%banner_divs.length;
@@ -78,12 +81,13 @@ function clickMove(obj,direction){
             now.setAttribute('id','last_banner');
             left.setAttribute('id','front_banner');
             obj.movement=true;
+            discription.innerHTML=left.firstElementChild.getAttribute('alt');
         }
         var left_P=parseFloat(left.style.left);
         var now_P=parseFloat(now.style.left);
         if(left_P==0&&now_P==100) {//移动结束
             obj.movement=false;
-            now.setAttribute('id','');
+            now.removeAttribute('id');
             obj.right=obj.now;
             obj.now=obj.left;
             obj.left=(obj.left-1)>=0? (obj.left-1)%banner_divs.length:banner_divs.length-1;
@@ -103,17 +107,15 @@ function clickMove(obj,direction){
 function banner(){
     for(var i=0;i<banner_divs.length;++i)
         banner_divs[i].style.left="0";
-    var BannerM=new Object();BannerM.old=0;BannerM.new=1;BannerM.last=3;BannerM.movement=false;
     var banner_obj=new Object();
-    banner_obj.now=0;banner_obj.left=3;banner_obj.right=1;banner_obj.movement=false; 
-
+    banner_obj.now=0;banner_obj.left=banner_divs.length-1;banner_obj.right=1;banner_obj.movement=false; 
     var infi=setInterval(function(){
         clickMove(banner_obj,'right');
     },3000);
     var buttons=document.getElementsByClassName('banner-button');
     buttons[0].onclick=function(){
+        //考虑图片还未移动到位按钮点击的情况
         if(banner_obj.movement) return false;
-   
         clearInterval(infi);
         clickMove(banner_obj,'right');
         infi=setInterval(function(){
