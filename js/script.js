@@ -132,7 +132,6 @@ function banner(){
     }
 }
 
-window.onload=function(){
+
     PredownMenue();
     banner();
-}
